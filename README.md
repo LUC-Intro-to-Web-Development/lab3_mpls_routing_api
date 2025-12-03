@@ -1,7 +1,7 @@
 #  MPLS Dog Boarding App - Configuring Routes and Implementing REST API (Lab 3) 
 You are going to extend the functionality of an existing application by adding additional routes to the MPLS Dog boarding application and implementing a REST API that will allow you to Create and View random dogs who reside at MPLS Dog Boarding. 
 
-[Image of Lab 3 Rendered output](https://instructorc.github.io/site/slides/database/images/lab3/cpst342_lab3_outputvid.gif)
+![Image of Lab 3 Rendered output](https://instructorc.github.io/site/slides/database/images/lab3/cpst342_lab3_outputvid.gif)
 ## Requirements
 
 ### Step 1 - Setup project folder and start-up server
