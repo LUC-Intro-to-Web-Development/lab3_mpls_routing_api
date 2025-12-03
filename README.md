@@ -1,7 +1,7 @@
 #  MPLS Dog Boarding App - Configuring Routes and Implementing REST API (Lab 3) 
 You are going to extend the functionality of an existing application by adding additional routes to the MPLS Dog boarding application and implementing a REST API that will allow you to Create and View random dogs who reside at MPLS Dog Boarding. 
 
-[![Image of Lab 3 Functionality](https://instructorc.github.io/site/slides/database/images/lab3/cpst342_lab3_outputvid.gif)](https://instructorc.github.io/site/slides/database/images/lab3/cpst342_lab3_outputvid.gif)
+[Image of Lab 3 Rendered output](https://instructorc.github.io/site/slides/database/images/lab3/cpst342_lab3_outputvid.gif)
 ## Requirements
 
 ### Step 1 - Setup project folder and start-up server
@@ -27,11 +27,11 @@ Listed below are two steps that will help you accomplish adding route to your se
 ![Image of Lab 3 API Request](https://instructorc.github.io/site/slides/database/images/lab3/forlab3_readme.PNG)
 
 2.  Navigate to the server.js file and locate the route that listens for a get request to URL path ```/search_breeds```, adjust the route to include the code below.  Make sure to add your API key.
-        ```javascript
+        ```js
 	      app.get('/search_breeds ', async function (req, res) {
     			
               // API URL
-	          const API_URL = "https://api.thedogapi.com/v1/breeds";  // <---- Change this to your api key
+	          const API_URL = "https://api.thedogapi.com/v1/breeds";  
 				
 	          // YOUR API KEY
 	          const API_KEY = "[YOUR_API_KEY]"; // <---- Change this to your api key
@@ -57,7 +57,7 @@ Listed below are two steps that will help you accomplish adding route to your se
 			    res.status(500).json({ error: "Internal Server Error" });
 			  }
 	  })
-	    ```
+	  ```
 4. Render your application in the browser and naviage to route ```/search_breeds``` to make sure you are successfully returning JSON data.  If data is not displaying, you can troubleshoot by viewing possible error in browser inspect elements console area.
    
 ### Step 4 - Adjust HTML to display data returned from API 
