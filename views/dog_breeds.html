@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="MPLS dogboarding">
+        <meta name="keywords" content="dogboarding, dog, hotel, luxury">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                font-family: 'Montserrat', sans-serif;
+                margin: 0;
+            }
+            #container{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: 105px auto  15%;
+                height: 100vh;
+                
+            }
+
+            header{
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-row-start: 1;
+                grid-row-end: 2;
+               
+            }
+            main{
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-row-start: 2;
+                grid-row-end: 3;
+                
+            }
+            footer{
+                grid-column-start: 1;
+                grid-column-end: 4;
+                grid-row-start: 3;
+                grid-row-end: -1;
+                padding-top: 40px;
+             
+            }
+
+            header img{
+                width: 20%;
+                margin: auto;
+                display: block;
+                max-width: 280px;
+                min-width: 250px;
+            }
+            section img {
+                width: 100%;
+            }
+
+
+
+            /* Breed results grid and card styles */
+            #breed-results {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 16px;
+                width: 100%;
+                padding: 16px;
+                box-sizing: border-box;
+            }
+
+            .breed-card {
+                background-color: #ffffffcf;
+                border-radius: 10px;
+                overflow: hidden;
+                display: flex;
+                max-width: 300px;
+                padding: 3%;
+                line-height: 1.3;
+                flex-direction: column;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                color: black;
+                transition: transform .15s ease-in-out, box-shadow .15s ease-in-out;
+            }
+            .breed-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            }
+
+            .breed-card img {
+                width: 100%;
+                aspect-ratio: 16 / 10;
+                object-fit: cover;
+                background-color: #eee;
+            }
+
+            .breed-card h3 {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+
+            .breed-card-body {
+                padding: 12px;
+                color: #000;
+                display: grid;
+                gap: 6px;
+            }
+
+            /* Utility text styles (match card body) */
+            .muted { color: #444; font-size: 0.95rem; }
+            .small { color: #333; font-size: 0.9rem; }
+
+            /* Responsive adjustments for smaller screens */
+            @media screen and (max-width: 1024px) {
+                #breed-results {
+                    gap: 12px;
+                    padding: 12px;
+                }
+            }
+            @media screen and (max-width: 768px) {
+                .breed-card {
+                    background-color: #000000cf;
+                    color: #fff;
+                }
+                .breed-card-body, .muted, .small {
+                    color: #fff;
+                }
+                #breed-results {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+
+            #flexcontainer{
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                background-image: url(./dog_bg.jpeg);
+                background-size: 100%;
+                background-position: center;
+            }
+            aside{
+                flex: 1 0 325px;
+                
+                margin: 4% 2%;
+                padding: 10px;
+                background-color: #ffffffcf;
+                border-radius: 10px;
+                transition: all .2s ease-in-out;
+            }
+            #copyright{
+                width: 275px;
+                margin:auto;
+            }
+            #location_button {
+                display: none;
+                flex: 1 0 300px;
+                font-size: 2.4em;
+                text-align: center;
+                color: white;
+                border: none;
+                margin: 4% 2%;
+                height: 120px;
+                border-radius: 10px;
+                background-color: #000000dc;
+            }
+
+            @media screen and (max-width: 1024px) {
+                aside {
+                    height:auto;
+                }
+
+                #flexcontainer {
+                    background-size: auto;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                #flexcontainer {
+                    background-image: url(./dog_bg_768.jpg);
+                    background-size: cover;
+                }
+
+                aside {
+                    background-color: #000000cf;
+                    background-position: center;
+                    color: white;
+                }
+
+                #location_button {
+                    display: block;
+                }
+
+            }
+
+
+
+          
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <img src="./mpls_dog_logo.png" alt="Mpls dog logo">
+            </header>
+            <main id="flexcontainer">
+                <aside>
+                    <h2>Dog Breed Lookup</h2>
+                    <form action="/dog_entry" method="POST"> <!-- Remove action value and get value-->
+
+                        <label for="breed">Search by name or breed group:</label>
+                        <input type="text" id="breed" name="breed"><br><br>
+         
+
+                    </form>
+
+
+
+
+                </aside>
+                
+                
+            </main>
+            <footer>
+                <div id="copyright">	&#169; 2019 - 2025 MPLS Dogboarding</div>
+            </footer>
+        </div>
+        <script>
+            <!-- Script that allows the enduser to seach by name or breed group -->
+
+            (function() {
+                const inputEl = document.querySelector('input[name="breed"]');
+                if (!inputEl) return;
+
+                const cards = Array.from(document.querySelectorAll('.breed-card'));
+
+                function extractName(card) {
+                    const h3 = card.querySelector('h3');
+                    return (h3 ? h3.textContent : '').trim().toLowerCase();
+                }
+
+                function extractBreedGroup(card) {
+                    // Find the div whose text starts with "Group:"
+                    const groupDiv = Array.from(card.querySelectorAll('div'))
+                        .find(d => d.textContent.trim().toLowerCase().startsWith('group:'));
+                    const text = groupDiv ? groupDiv.textContent : '';
+                    return text.replace(/^group:\s*/i, '').trim().toLowerCase();
+                }
+
+                function filterCards(term) {
+                    const t = (term || '').trim().toLowerCase();
+                    cards.forEach(card => {
+                        const name = extractName(card);
+                        const group = extractBreedGroup(card);
+                        const matches = !t || name.includes(t) || group.includes(t);
+                        card.style.display = matches ? '' : 'none';
+                    });
+                }
+
+                inputEl.addEventListener('input', function(e) {
+                    filterCards(e.target.value);
+                });
+            })();
+        </script>
+    </body>
+</html>

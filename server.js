@@ -20,35 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', function (req, res) {
-	console.log("Sent as a get request");
+	console.log("Sent request for home page");
 
 	res.render('home', { title: "Routing in Action!"})
 })
 
-app.get('/citydata', async (req, res) =>{
 
-	const response = await fetch("https://data.cityofchicago.org/resource/d6ui-3yap.json");
-	
-	if (!response.ok) {
-      return res.status(500).json({ error: "Failed to fetch external data" });
-    }
 
-    const data = await response.json();
-
-	res.json(data);
-
-})
-
-app.get('/users/:id', function (req, res) {
-	//Getting id parameter
-	var id = req.params.id;
-
-    var addition = 302 + Number(id);
-	console.log("Sent as a get request" );
-	res.render('home', { 
-         title: "Routing in Action!",
-         user_id : addition})
-})
 
 app.get('/contact', function (req, res) {
 
