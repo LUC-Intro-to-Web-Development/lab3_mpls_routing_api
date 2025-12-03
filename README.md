@@ -58,7 +58,7 @@ Listed below are two steps that will help you accomplish adding route to your se
 			    console.error("Fetch error:", error);
 			    res.status(500).json({ error: "Internal Server Error" });
 			  }
-	  })
+	  	})
 	  ```
 4. Render your application in the browser and naviage to route ```/search_breeds``` to make sure you are successfully returning JSON data.  If data is not displaying, you can troubleshoot by viewing possible error in browser inspect elements console area.
    
