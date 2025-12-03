@@ -29,7 +29,7 @@ Listed below are two steps that will help you accomplish adding route to your se
 ![Image of Lab 3 API Request](https://instructorc.github.io/site/slides/database/images/lab3/forlab3_readme.PNG)
 
 2.  Navigate to the server.js file and locate the route that listens for a get request to URL path ```/search_breeds```, adjust the route to include the code below.  Make sure to add your API key.
-        ```js
+        ```javascript
 	      app.get('/search_breeds ', async function (req, res) {
     			
               // API URL
